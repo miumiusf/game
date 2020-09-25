@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title> Rock Paper Scissors</title>
+</head>
+<body>
+  <script>
+// computer auto generate items
+  function computerPlay() {
+    const threeChoices = ["rock","paper","scissors"];
+    const choiceNum = threeChoices.length;
+    const finalChoice = choiceNum[Math.floor(Math.random() * choiceNum)];
+    return finalChoice;
+  }
+// a single round of game
+  function PlayRound(playerSelection, computerSelection) {
+    if (playerSelection === 'rock' && computerSelection === 'paper') {
+      return "lose";
+    }
+    else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+      return "win";
+    }
+    else if (playerSelection === 'paper' && computerSelection === 'rock') {
+      return "win";
+    }
+    else if (playerSelection === 'paper' && computerSelection === 'scissors') {
+      return "lose";
+    }
+    else if (playerSelection === 'scissors' && computerSelection === 'rock') {
+      return "lose";
+    }
+    else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+      return "win";
+    }
+    else if (playerSelection === computerSelection) {
+      return "tie";
+    }
+  }
+  //computer auto-generating results of the game and using loop for 5 rounds
+    function game(){
+      let computerScore = 0;
+      let playerScore = 0;
+      let round = 0;
+
+      for (round ; round <5; round++){
+        let userInput = prompt('Choose between rock, scissors, and paper: ','');
+        let comPlayer = computerPlay();
+        let playSelect = userInput.toLowerCase();
+        let gameRound = PlayRound (playSelect, comPlayer);
+        if (gameRound == 'win'){
+          playerScore += 1;
+          console.log('You win! ${playSelect} beats ${comPlayer}');
+          console.log('Final scores: Player ${playerScore} versus Computer ${computerScore}');
+        }
+        else if (gameRound == 'lose'){
+          computerScore += 1;
+          console.log('You lose! ${comPlayer} beats ${playSelect}');
+          console.log('Final scores: Player ${playerScore} versus Computer ${computerScore}');
+        }
+        else if (gameRound == 'tie') {
+          playerScore += 0;
+          computerScore += 0;
+          console.log('It is a tie!');
+          console.log('Final scores: Player ${playerScore} versus Computer ${computerScore}');
+        }
+        // show the outcome of the 5 rounds
+        if(playerScore > computerScore) {
+          return 'You won!';
+        }
+        else if (playerScore < computerScore){
+          return 'You lost!';
+        }
+        else if (playerScore == computerScore) {
+          return "It's a tie!";
+        }
+        }
+      console.log('Final scores: Player ${playerScore} versus Computer ${computerScore}');
+    }
+
+  </script>
+</body>
+</html>
